@@ -5,6 +5,7 @@
 plxToken::validateFormToken($_POST);
 
 if(!empty($_POST)) {
+	$plxPlugin->setParam('jquery', $_POST['jquery'], 'numeric');
 	$plxPlugin->setParam('width', $_POST['width'], 'numeric');
 	$plxPlugin->setParam('height', $_POST['height'], 'numeric');
 	$plxPlugin->setParam('spw', $_POST['spw'], 'numeric');
@@ -22,6 +23,7 @@ if(!empty($_POST)) {
 	exit;
 }
 $parms = array();
+$parms['jquery'] = $plxPlugin->getParam('jquery')!='' ? $plxPlugin->getParam('jquery') : true;
 $parms['width'] = $plxPlugin->getParam('width')!='' ? $plxPlugin->getParam('width') : '500';
 $parms['height'] = $plxPlugin->getParam('height')!='' ? $plxPlugin->getParam('height') : '300';
 $parms['spw'] = $plxPlugin->getParam('spw')!='' ? $plxPlugin->getParam('spw') : '7';
@@ -34,13 +36,14 @@ $parms['effect'] = $plxPlugin->getParam('effect')!='' ? $plxPlugin->getParam('ef
 $parms['navigation'] = $plxPlugin->getParam('navigation')!='' ? $plxPlugin->getParam('navigation') : true;
 $parms['links'] = $plxPlugin->getParam('links')!='' ? $plxPlugin->getParam('links') : false;
 $parms['hoverPause'] = $plxPlugin->getParam('hoverPause')!='' ? $plxPlugin->getParam('hoverPause') : true;
-
 ?>
 
 <h2><?php echo $plxPlugin->getInfo('title') ?></h2>
 
 <form action="parametres_plugin.php?p=plxMyCoinSlider" method="post" id="form_plxMyCoinSlider">
 	<fieldset>
+		<p class="field"><label for="id_jquery"><?php $plxPlugin->lang('L_JQUERY') ?></label></p>
+		<?php plxUtils::printSelect('jquery',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['jquery']) ?>
 		<p class="field"><label for="id_width"><?php $plxPlugin->lang('L_WIDTH') ?></label></p>
 		<?php plxUtils::printInput('width',$parms['width'],'text','4-4') ?>
 		<p class="field"><label for="id_height"><?php $plxPlugin->lang('L_HEIGHT') ?></label></p>

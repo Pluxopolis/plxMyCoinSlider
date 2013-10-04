@@ -12,8 +12,8 @@ class plxMyCoinSlider extends plxPlugin {
 
 	public function __construct($default_lang) {
 
-        # appel du constructeur de la classe plxPlugin (obligatoire)
-        parent::__construct($default_lang);
+		# appel du constructeur de la classe plxPlugin (obligatoire)
+		parent::__construct($default_lang);
 
 		# droits pour accèder à la page config.php et admin.php du plugin
 		$this->setConfigProfil(PROFIL_ADMIN);
@@ -25,14 +25,14 @@ class plxMyCoinSlider extends plxPlugin {
 		$this->coinslider = new coinslider();
 		$this->coinslider->getSlides();
 
-        # déclaration des hooks
+		# déclaration des hooks
 		if($this->coinslider->aSlides) {
 			$this->addHook('ThemeEndHead', 'ThemeEndHead');
 			$this->addHook('ThemeEndBody', 'ThemeEndBody');
 			$this->addHook('MyCoinSlider', 'MyCoinSlider');
 		}
 
-    }
+	}
 
 	public function AdminMediasTop() {
 
@@ -60,7 +60,7 @@ class plxMyCoinSlider extends plxPlugin {
 			foreach($this->coinslider->aSlides as $slide) {
 				if($slide['active']) {
 					$onclick = $slide['onclick']!='' ? $slide['onclick'] : $slide['url'];
-					echo '<a href="'.plxUtils::strCheck($onclick).'"><img src="'.plxUtils::strCheck($slide['url']).'" title="'.plxUtils::strCheck($slide['title']).'" /><span>'.strip_tags($slide['description'], '<strong><b><em><br>')."</span></a>\n";
+					echo '<a href="'.plxUtils::strCheck($onclick).'"><img alt="" src="'.plxUtils::strCheck($slide['url']).'" title="'.plxUtils::strCheck($slide['title']).'" /><span>'.strip_tags($slide['description'], '<strong><b><em><br>')."</span></a>\n";
 				}
 			}
 			echo "</div>\n";
@@ -68,17 +68,15 @@ class plxMyCoinSlider extends plxPlugin {
 	}
 
 	public function ThemeEndHead() {
-		echo "\t".'<link rel="stylesheet" type="text/css" href="'.PLX_PLUGINS.'plxMyCoinSlider/coin-slider/coin-slider-styles.css" media="screen" />'."\n";
-		echo "\t".'
-		<style type="text/css">
-		.coin-slider { width: '.$this->getParam('width').'px !important }
-		</style>
-		';
+		echo '<link rel="stylesheet" type="text/css" href="'.PLX_PLUGINS.'plxMyCoinSlider/coin-slider/coin-slider-styles.css" media="screen" />';
+		echo '
+<style type="text/css">
+.coin-slider { width: '.$this->getParam('width').'px !important }
+</style>'."\n";
 	}
 
 	public function ThemeEndBody() {
 
-		echo "\t".'<script type="text/javascript" src="'.PLX_PLUGINS.'plxMyCoinSlider/coin-slider/coin-slider.min.js"></script>'."\n";
 		$keys = array('width','height','spw','sph','delay','sDelay','opacity','titleSpeed','effect','navigation','links','hoverPause');
 		$parms = $this->getParams();
 		$array= array();
@@ -93,18 +91,23 @@ class plxMyCoinSlider extends plxPlugin {
 			}
 		}
 		$string = $array ? implode(',',$array) : '';
-	?>
 
+		if($this->getParam('jquery')) {
+			echo "\n".'
 <script type="text/javascript">
-if (typeof jQuery == 'undefined') {
-	document.write('<script type="text\/javascript" src="<?php echo PLX_PLUGINS ?>plxMyCoinSlider\/coin-slider\/jquery.min.js"><\/script>');
+if (typeof jQuery == "undefined") {
+	document.write(\'<script type="text\/javascript" src="'.PLX_PLUGINS.'plxMyCoinSlider\/coin-slider\/jquery.min.js"><\/script>\');
 }
+</script>';
+		}
+			echo '
+<script type="text/javascript" src="'.PLX_PLUGINS.'plxMyCoinSlider/coin-slider/coin-slider.min.js"></script>
+<script type="text/javascript">
 $(document).ready(function() {
-	$('#coin-slider').coinslider({<?php echo $string ?>});
+	$("#coin-slider").coinslider({'.$string.'});
 });
 </script>
-
-	<?php
+';
 	}
 }
 ?>

@@ -31,11 +31,11 @@ Affichage du diaporama dans une page statique
 - ajouter les lignes suivantes à l'endroit où vous souhaitez afficher le diaporama
 
 <div style="color:#000;padding:0 10px 15px 10px;border:1px solid #dedede">
-<?php 
+<?php
 echo plxUtils::strCheck('
 <?php
 global $plxShow;
-eval($plxShow->callHook("MyCoinSlider")); 
+eval($plxShow->callHook("MyCoinSlider"));
 ?>
 ');
 ?>

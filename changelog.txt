@@ -1,3 +1,8 @@
+## Version 1.2 (04/10/2013) ##
+[+]	Paramétrage de l'utilisation (oui/non) de la version de jquery intégrée au plugin
+[+] Ajout des balises alt pour les images
+BUG Mauvais appel de jquery (contribution Jerry Wham)
+
 ## Version 1.1.2 (25/06/2013) ##
 [+] Test et chargement de jQuery si nécessaire
 [+] Chargement des librairies javascript en fin de page plutot que dans la partie <head> du site

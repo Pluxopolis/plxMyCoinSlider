@@ -15,7 +15,7 @@ $LANG = array(
 'L_DELETE'					=> 'Remove from slideshow',
 
 # config.php
-
+'L_JQUERY'					=> 'Load jQuery library?',
 'L_DATAPATH'				=> 'Images data path folder',
 'L_ALIGNMENT'				=> 'Slideshow alignment',
 'L_MARGINS'					=> 'Margins (ex:10px 10px 10px 10px)',

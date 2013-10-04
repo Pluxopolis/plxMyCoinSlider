@@ -17,6 +17,7 @@ $LANG = array(
 'L_DELETE'					=> 'Supprimer du diaporama',
 
 # config.php
+'L_JQUERY'					=> 'Utiliser la librairie jQuery du plugin ?',
 'L_WIDTH'					=> 'Largeur du diaporama',
 'L_HEIGHT'					=> 'Hauteur du diaporama',
 'L_SPW'						=> 'Nombre de carrés par largeur (ex:7)',
