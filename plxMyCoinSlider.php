@@ -45,7 +45,7 @@ class plxMyCoinSlider extends plxPlugin {
 
 	public function AdminMediasPrepend() {
 
-		if(isset($_POST['selection']) AND ($_POST['selection'][0] == 'coinslider_add' OR $_POST['selection'][1] == 'coinslider_add') AND isset($_POST['idFile'])) {
+		if(isset($_POST['selection']) AND $_POST['selection']=='coinslider_add' AND isset($_POST['idFile'])) {
 			$this->coinslider->editSlides($_POST);
 			header('Location: medias.php');
 			exit;
@@ -55,16 +55,15 @@ class plxMyCoinSlider extends plxPlugin {
 
 	public function MyCoinSlider() {
 
-		if($this->coinslider->aSlides) {
-			echo "\n<div id=\"coin-slider\">\n";
-			foreach($this->coinslider->aSlides as $slide) {
-				if($slide['active']) {
-					$onclick = $slide['onclick']!='' ? $slide['onclick'] : $slide['url'];
-					echo '<a href="'.plxUtils::strCheck($onclick).'"><img alt="" src="'.plxUtils::strCheck($slide['url']).'" title="'.plxUtils::strCheck($slide['title']).'" /><span>'.strip_tags($slide['description'], '<strong><b><em><br>')."</span></a>\n";
-				}
+		echo "\n<div id=\"coin-slider\">\n";
+		foreach($this->coinslider->aSlides as $slide) {
+			if($slide['active']) {
+				$onclick = $slide['onclick']!='' ? $slide['onclick'] : $slide['url'];
+				echo '<a href="'.plxUtils::strCheck($onclick).'"><img alt="" src="'.plxUtils::strCheck($slide['url']).'" title="'.plxUtils::strCheck($slide['title']).'" /><span>'.strip_tags($slide['description'], '<strong><b><em><br>')."</span></a>\n";
 			}
-			echo "</div>\n";
 		}
+		echo "</div>\n";
+
 	}
 
 	public function ThemeEndHead() {
@@ -80,14 +79,16 @@ class plxMyCoinSlider extends plxPlugin {
 		$keys = array('width','height','spw','sph','delay','sDelay','opacity','titleSpeed','effect','navigation','links','hoverPause');
 		$parms = $this->getParams();
 		$array= array();
-		foreach($parms as $key => $value) {
-			if(in_array($key, $keys) AND ($value['value']!='' OR $value['value']==1)) {
-				if(in_array($key, array('navigation','links','hoverPause')))
-					$array[] = $key.':'.($value['value']==1?'true':'false');
-				elseif($value['type']=='numeric')
-					$array[] = $key.':'.$value['value'];
-				else
-					$array[] = $key.":'".$value['value']."'";
+		if($parms) {
+			foreach($parms as $key => $value) {
+				if(in_array($key, $keys) AND ($value['value']!='' OR $value['value']==1)) {
+					if(in_array($key, array('navigation','links','hoverPause')))
+						$array[] = $key.':'.($value['value']==1?'true':'false');
+					elseif($value['type']=='numeric')
+						$array[] = $key.':'.$value['value'];
+					else
+						$array[] = $key.":'".$value['value']."'";
+				}
 			}
 		}
 		$string = $array ? implode(',',$array) : '';

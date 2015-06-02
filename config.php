@@ -37,38 +37,66 @@ $parms['navigation'] = $plxPlugin->getParam('navigation')!='' ? $plxPlugin->getP
 $parms['links'] = $plxPlugin->getParam('links')!='' ? $plxPlugin->getParam('links') : false;
 $parms['hoverPause'] = $plxPlugin->getParam('hoverPause')!='' ? $plxPlugin->getParam('hoverPause') : true;
 ?>
-
-<h2><?php echo $plxPlugin->getInfo('title') ?></h2>
-
-<form action="parametres_plugin.php?p=plxMyCoinSlider" method="post" id="form_plxMyCoinSlider">
+<style>
+form.inline-form label {
+	width: 300px;
+}
+</style>
+<form class="inline-form" action="parametres_plugin.php?p=plxMyCoinSlider" method="post" id="form_plxMyCoinSlider">
 	<fieldset>
-		<p class="field"><label for="id_jquery"><?php $plxPlugin->lang('L_JQUERY') ?></label></p>
-		<?php plxUtils::printSelect('jquery',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['jquery']) ?>
-		<p class="field"><label for="id_width"><?php $plxPlugin->lang('L_WIDTH') ?></label></p>
-		<?php plxUtils::printInput('width',$parms['width'],'text','4-4') ?>
-		<p class="field"><label for="id_height"><?php $plxPlugin->lang('L_HEIGHT') ?></label></p>
-		<?php plxUtils::printInput('height',$parms['height'],'text','4-4') ?>
-		<p class="field"><label for="id_spw"><?php $plxPlugin->lang('L_SPW') ?></label></p>
-		<?php plxUtils::printInput('spw',$parms['spw'],'text','2-2') ?>
-		<p class="field"><label for="id_sph"><?php $plxPlugin->lang('L_SPH') ?></label></p>
-		<?php plxUtils::printInput('sph',$parms['sph'],'text','2-2') ?>
-		<p class="field"><label for="id_delay"><?php $plxPlugin->lang('L_DELAY') ?></label></p>
-		<?php plxUtils::printInput('delay',$parms['delay'],'text','4-4') ?>
-		<p class="field"><label for="id_sdelay"><?php $plxPlugin->lang('L_SDELAY') ?></label></p>
-		<?php plxUtils::printInput('sDelay',$parms['sDelay'],'text','4-4') ?>
-		<p class="field"><label for="id_opacity"><?php $plxPlugin->lang('L_OPACITY') ?></label></p>
-		<?php plxUtils::printInput('opacity',$parms['opacity'],'text','4-4') ?>
-		<p class="field"><label for="id_titleSpeed"><?php $plxPlugin->lang('L_TITLESPEED') ?></label></p>
-		<?php plxUtils::printInput('titleSpeed',$parms['titleSpeed'],'text','4-4') ?>
-		<p class="field"><label for="id_effect"><?php $plxPlugin->lang('L_EFFECT') ?></label></p>
-		<?php plxUtils::printSelect('effect',array('random'=>$plxPlugin->getLang('L_RANDOM'),'swirl'=>$plxPlugin->getLang('L_SWIRL'),'rain'=>$plxPlugin->getLang('L_RAIN'),'straight'=>$plxPlugin->getLang('L_STRAIGHT')),$parms['effect']) ?>
-		<p class="field"><label for="id_navigation"><?php $plxPlugin->lang('L_NAVIGATION') ?></label></p>
-		<?php plxUtils::printSelect('navigation',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['navigation']) ?>
-		<p class="field"><label for="id_links"><?php $plxPlugin->lang('L_LINKS') ?></label></p>
-		<?php plxUtils::printSelect('links',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['links']) ?>
-		<p class="field"><label for="id_hoverPause"><?php $plxPlugin->lang('L_HOVERPAUSE') ?></label></p>
-		<?php plxUtils::printSelect('hoverPause',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['hoverPause']) ?>
 		<p>
+			<label for="id_jquery"><?php $plxPlugin->lang('L_JQUERY') ?></label>
+			<?php plxUtils::printSelect('jquery',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['jquery']) ?>
+		</p>
+		<p>
+			<label for="id_width"><?php $plxPlugin->lang('L_WIDTH') ?></label>
+			<?php plxUtils::printInput('width',$parms['width'],'text','4-4') ?>
+		</p>
+		<p>
+			<label for="id_height"><?php $plxPlugin->lang('L_HEIGHT') ?></label>
+			<?php plxUtils::printInput('height',$parms['height'],'text','4-4') ?>
+		</p>
+		<p>
+			<label for="id_spw"><?php $plxPlugin->lang('L_SPW') ?></label>
+			<?php plxUtils::printInput('spw',$parms['spw'],'text','2-2') ?>
+		</p>
+		<p>
+			<label for="id_sph"><?php $plxPlugin->lang('L_SPH') ?></label>
+			<?php plxUtils::printInput('sph',$parms['sph'],'text','2-2') ?>
+		</p>
+		<p>
+			<label for="id_delay"><?php $plxPlugin->lang('L_DELAY') ?></label>
+			<?php plxUtils::printInput('delay',$parms['delay'],'text','4-4') ?>
+		</p>
+		<p>
+			<label for="id_sdelay"><?php $plxPlugin->lang('L_SDELAY') ?></label>
+			<?php plxUtils::printInput('sDelay',$parms['sDelay'],'text','4-4') ?>
+		</p>
+		<p>
+			<label for="id_opacity"><?php $plxPlugin->lang('L_OPACITY') ?></label>
+			<?php plxUtils::printInput('opacity',$parms['opacity'],'text','4-4') ?>
+		</p>
+		<p>
+			<label for="id_titleSpeed"><?php $plxPlugin->lang('L_TITLESPEED') ?></label>
+			<?php plxUtils::printInput('titleSpeed',$parms['titleSpeed'],'text','4-4') ?>
+		</p>
+		<p>
+			<label for="id_effect"><?php $plxPlugin->lang('L_EFFECT') ?></label>
+			<?php plxUtils::printSelect('effect',array('random'=>$plxPlugin->getLang('L_RANDOM'),'swirl'=>$plxPlugin->getLang('L_SWIRL'),'rain'=>$plxPlugin->getLang('L_RAIN'),'straight'=>$plxPlugin->getLang('L_STRAIGHT')),$parms['effect']) ?>
+		</p>
+		<p>
+			<label for="id_navigation"><?php $plxPlugin->lang('L_NAVIGATION') ?></label>
+			<?php plxUtils::printSelect('navigation',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['navigation']) ?>
+		</p>
+		<p>
+			<label for="id_links"><?php $plxPlugin->lang('L_LINKS') ?></label>
+			<?php plxUtils::printSelect('links',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['links']) ?>
+		</p>
+		<p>
+			<label for="id_hoverPause"><?php $plxPlugin->lang('L_HOVERPAUSE') ?></label>
+			<?php plxUtils::printSelect('hoverPause',array('1'=>$plxPlugin->getLang('L_YES'),'0'=>$plxPlugin->getLang('L_NO')),$parms['hoverPause']) ?>
+		</p>
+		<p class="in-action-bar">
 			<?php echo plxToken::getTokenPostMethod() ?>
 			<input type="submit" name="submit" value="<?php $plxPlugin->lang('L_SAVE') ?>" />
 		</p>

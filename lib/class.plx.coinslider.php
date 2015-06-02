@@ -79,7 +79,7 @@ class coinslider {
 		$save = $this->aSlides;
 
 		# suppression
-		if(!empty($content['selection']) AND $content['selection']=='delete' AND isset($content['idSlide'])) {
+		if(isset($content['selection']) AND $content['selection']=='delete' AND isset($content['idSlide'])) {
 			foreach($content['idSlide'] as $slide_id) {
 				# suppression du parametre
 				unset($this->aSlides[$slide_id]);
@@ -87,9 +87,9 @@ class coinslider {
 			}
 		}
 		# ajout d'un nouveau slide à partir du gestionnaire de médias
-		if(isset($content['selection']) AND (!empty($content['selection'][0]) OR !empty($content['selection'][1])) AND isset($content['idFile'])) {
+		if(isset($content['selection']) AND !empty($content['selection']) AND isset($content['idFile'])) {
 			$plxAdmin = plxAdmin::getInstance();
-			$root = $plxAdmin->aConf['images'];
+			$root = $plxAdmin->aConf['medias'];
 			if($content['folder']=='.') $content['folder']='';
 			foreach($content['idFile'] as $filename) {
 				$slide_id = $this->nextIdSlide();

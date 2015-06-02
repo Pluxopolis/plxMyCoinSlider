@@ -1,3 +1,8 @@
+## Version 1.2.1 (01/06/2015) ##
+[+] Compatibilité PluXml 5.4
+[+] Mise à jour script timthumb en 2.8.14
+[+] Déplacement du cache de timthumb dans le dossiers /plugins
+
 ## Version 1.2 (04/10/2013) ##
 [+]	Paramétrage de l'utilisation (oui/non) de la version de jquery intégrée au plugin
 [+] Ajout des balises alt pour les images
