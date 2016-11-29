@@ -35,7 +35,7 @@ if(!empty($_POST)) {
 			echo '<td style="vertical-align:top"><input type="checkbox" name="idSlide[]" value="'.$k.'" /><input type="hidden" name="slideNum[]" value="'.$k.'" /></td>';
 			echo '<td style="vertical-align:top">';
 			if(file_exists(PLX_ROOT.$v['url'])) {
-				echo '<img src="'.PLX_PLUGINS.'plxMyCoinSlider/lib/timthumb.php?src='.PLX_ROOT.plxUtils::strCheck($v['url']).'&amp;h=100&amp;w=150&amp;zc=1" alt="" />';
+				echo '<img src="'.PLX_PLUGINS.'plxMyCoinSlider/lib/mthumb.php?src='.plxUtils::getRacine().plxUtils::strCheck($v['url']).'&amp;h=100&amp;w=150&amp;zc=1" alt="" />';
 			}
 			echo '&nbsp;</td><td>';
 			echo $plxPlugin->getLang('L_URL_IMAGE').' '.$k.' :<br />';
